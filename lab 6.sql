@@ -158,3 +158,122 @@
         SELECT SIN(4.2014),COS(4.2014),TAN(4.2014);
         -- 5. Find sign of -55, 0 and 95.
         SELECT SIGN(-55),SIGN(0),SIGN(95);
+
+
+		--         Part – B of string on lab 5
+--         1. Find the length of FirstName and LastName columns.
+            SELECT EMPNAME, LEN(EMPNAME) AS LENGTH FROM EMP_MASTER;
+--         2. Display FirstName and LastName columns in lower & upper case.
+            SELECT EMPNAME,UPPER(EMPNAME) AS UPP,LOWER(EMPNAME) AS LOW FROM EMP_MASTER;
+--         3. Display first three characters of FirstName column.
+            SELECT LEFT(EMPNAME,3) FROM EMP_MASTER;
+--         4. Display 3rd to 10th character of Website column.
+            SELECT  SUBSTRING(CITY,3,7) FROM EMP_MASTER;
+--         5. Write a query to display first 4 & Last 5 characters of Website column.
+            SELECT  LEFT(CITY,4),RIGHT(CITY,5) FROM EMP_MASTER;
+
+
+
+--         Part – C of string: on lab 5.
+--         1. Put 10 space before FirstName using function.
+            SELECT CONCAT(SPACE(10),EMPNAME) FROM EMP_MASTER;
+--         2. Combine FirstName and LastName columns using + sign as well as CONCAT ().
+            SELECT EMPNAME+ City FROM EMP_MASTER;
+            SELECT CONCAT(EMPNAME,CITY) FROM EMP_MASTER;
+--         3. Combine all columns using + sign as well as CONCAT ().
+            SELECT CAST(EMPNO AS CHAR(3))+EMPNAME+ CONVERT(VARCHAR(10),JOININGDATE)+CONVERT(VARCHAR(10),SALARY)+ CONVERT(VARCHAR(10),Commission) +CITY+DEPTCODE FROM EMP_MASTER;
+--         4. Find reverse of FirstName column.
+            SELECT REVERSE(EMPNAME) FROM EMP_MASTER;
+--         5. Repeat FirstName column 3 times
+            SELECT REPLICATE(EMPNAME,3) FROM EMP_MASTER;
+--         6. Give the Names which contains 5 characters.
+            SELECT EMPNAME FROM EMP_MASTER WHERE LEN(EMPNAME)=5;
+--         7. Combine the result as <FirstName> Lives in <City>.
+            SELECT EMPNAME + ' LIVES IN ' + CITY FROM EMP_MASTER;
+--         8. Combine the result as Student_ID of < FirstName > is <StuID> .
+            SELECT 'EMP_ID OF ' + CONVERT(VARCHAR(10),EMPNAME)  + ' IS ' +  CONVERT(CHAR(10),EMPNO)  FROM EMP_MASTER;
+            SELECT * FROM EMP_MASTER;
+
+
+ -- Part – B of date function:
+
+            -- Create the EMP_DETAIL table
+                CREATE TABLE EMP_DETAIL (
+                    EmpNo INT,
+                    EmpName VARCHAR(50),
+                    JoiningDate DATE,
+                    Salary DECIMAL(10, 2),
+                    City VARCHAR(50)
+                );
+
+                -- Insert the records into the EMP_DETAIL table
+                INSERT INTO EMP_DETAIL (EmpNo, EmpName, JoiningDate, Salary, City)
+                VALUES
+                    (101, 'Keyur', '2002-01-15', 12000.00, 'Rajkot'),
+                    (102, 'Hardik', '2004-02-15', 14000.00, 'Ahmedabad'),
+                    (103, 'Kajal', '2006-03-14', 15000.00, 'Baroda'),
+                    (104, 'Bhoomi', '2005-06-23', 12500.00, 'Ahmedabad'),
+                    (105, 'Harmit', '2004-02-15', 14000.00, 'Rajkot'),
+                    (106, 'Jay', '2007-03-12', 12000.00, 'Surat');
+
+--             SELECT * FROM EMP_DETAIL;
+
+--                 1. Write a query to find new date after 365 day with reference to JoiningDate.
+                    SELECT DATEADD(DAY ,365,JOININGDATE) FROM EMP_DETAIL;
+--                 2. Display the JoiningDate in a format that appears as may 5 1994 12:00AM.
+                    SELECT FORMAT(JOININGDATE,'d MMM yyyy hh:MM:SS TT') FROM EMP_DETAIL;
+--                 3. Display the JoiningDate in a format that appears as 03 Jan 1995.
+                    SELECT FORMAT(JOININGDATE,'d MMM, yyyy') FROM EMP_DETAIL;
+--                 4. Display the JoiningDate in a format that appears as Jan 04, 96.
+                    SELECT FORMAT(JOININGDATE,'MMM d, yy') FROM EMP_DETAIL;
+--                 5. Write a query to find out total number of months between JoiningDate and 31-Mar-09.
+                    SELECT DATEDIFF(MONTH ,JOININGDATE,'31-MAR-09') FROM EMP_DETAIL;
+--                 6. Write a query to find out total number of years between JoiningDate and 14-Sep-10
+                    SELECT DATEDIFF(YEAR ,JOININGDATE,'14-Sep-10') FROM EMP_DETAIL;
+
+--                 Part – C:
+--                 1. Write a query to extract Day, Month, Year from JoiningDate.
+--                 2. Write a query that adds 5 years to JoiningDate.
+--                 3. Write a query to subtract 2 months from JoiningDate.
+--                 4. Extract month from JoiningDate using datename () and datepart () function.
+                    SELECT DATENAME(MONTH ,JOININGDATE) FROM EMP_DETAIL;
+--                 5. Calculate your age in years and months
+
+
+SELECT
+    EmpNo,
+    EmpName,
+    JoiningDate,
+    DATENAME(MONTH, JoiningDate) AS MonthName,
+    DATEPART(MONTH, JoiningDate) AS MonthNumber
+FROM EMP_DETAIL;
+
+SELECT
+    EmpNo,
+    EmpName,
+    DAY(JoiningDate) AS JoiningDay,
+    MONTH(JoiningDate) AS JoiningMonth,
+    YEAR(JoiningDate) AS JoiningYear
+FROM EMP_DETAIL;
+
+SELECT
+    EmpNo,
+    EmpName,
+    JoiningDate,
+    DATEADD(YEAR, 5, JoiningDate) AS JoiningDatePlus5Years
+FROM EMP_DETAIL;
+
+SELECT
+    EmpNo,
+    EmpName,
+    JoiningDate,
+    DATEADD(MONTH, -2, JoiningDate) AS JoiningDateMinus2Months
+FROM EMP_DETAIL;
+
+SELECT
+    EmpNo,
+    EmpName,
+    JoiningDate,
+    DATENAME(MONTH, JoiningDate) AS MonthName,
+    DATEPART(MONTH, JoiningDate) AS MonthNumber
+FROM EMP_DETAIL;
