@@ -231,49 +231,9 @@
 --                 6. Write a query to find out total number of years between JoiningDate and 14-Sep-10
                     SELECT DATEDIFF(YEAR ,JOININGDATE,'14-Sep-10') FROM EMP_DETAIL;
 
---                 Part – C:
---                 1. Write a query to extract Day, Month, Year from JoiningDate.
---                 2. Write a query that adds 5 years to JoiningDate.
---                 3. Write a query to subtract 2 months from JoiningDate.
---                 4. Extract month from JoiningDate using datename () and datepart () function.
-                    SELECT DATENAME(MONTH ,JOININGDATE) FROM EMP_DETAIL;
---                 5. Calculate your age in years and months
-
-
-SELECT
-    EmpNo,
-    EmpName,
-    JoiningDate,
-    DATENAME(MONTH, JoiningDate) AS MonthName,
-    DATEPART(MONTH, JoiningDate) AS MonthNumber
-FROM EMP_DETAIL;
-
-SELECT
-    EmpNo,
-    EmpName,
-    DAY(JoiningDate) AS JoiningDay,
-    MONTH(JoiningDate) AS JoiningMonth,
-    YEAR(JoiningDate) AS JoiningYear
-FROM EMP_DETAIL;
-
-SELECT
-    EmpNo,
-    EmpName,
-    JoiningDate,
-    DATEADD(YEAR, 5, JoiningDate) AS JoiningDatePlus5Years
-FROM EMP_DETAIL;
-
-SELECT
-    EmpNo,
-    EmpName,
-    JoiningDate,
-    DATEADD(MONTH, -2, JoiningDate) AS JoiningDateMinus2Months
-FROM EMP_DETAIL;
-
-SELECT
-    EmpNo,
-    EmpName,
-    JoiningDate,
-    DATENAME(MONTH, JoiningDate) AS MonthName,
-    DATEPART(MONTH, JoiningDate) AS MonthNumber
-FROM EMP_DETAIL;
+ -- part c of date function
+--1. Write a query to extract Day, Month, Year from JoiningDate.
+--2. Write a query that adds 5 years to JoiningDate.
+--3. Write a query to subtract 2 months from JoiningDate.
+--4. Extract month from JoiningDate using datename () and datepart () function.
+--5. Calculate your age in years and months
