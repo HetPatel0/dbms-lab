@@ -47,13 +47,13 @@ select c.name from City c full outer join Village v on c.CityID = v.CityID  grou
 select c.name , count(v.name) from city c left outer join Village v on c.CityID = v.CityID group by c.Name
 
 --Count the number of cities having more than one village.
-select count(c.name) from City c join Village v on c.CityID = v.CityID group by  having count(v.VID) > 1
+select count(c.name) from City c join Village v on c.CityID = v.CityID group by c.Name  having count(v.VID) > 1
 
 
 --------
 
 --Try to update SPI of Raju from 8.80 to 12.
-UPDATE STU_MASTER SET SPI = 12 WHERE name = 'raju'
+UPDATE STU_MASTER  SET SPI = 12 WHERE name = 'raju'
 
 --Try to update Bklog of Neha from 0 to -1.
 update stu_master set bklog = -1 where name = 'neha'
