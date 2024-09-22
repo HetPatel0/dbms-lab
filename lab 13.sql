@@ -50,12 +50,28 @@ select c.name , count(v.name) from city c left outer join Village v on c.CityID 
 select count(c.name) from City c join Village v on c.CityID = v.CityID group by c.Name  having count(v.VID) > 1
 
 
---------
+create table Stu_master (
+    Rno Int primary key,
+	Name varchar(20),
+	Branch varchar(10) default ('general'),
+	spi decimal(10,2) check(spi<=10),
+	bklog int check(bklog>=0)
 
---Try to update SPI of Raju from 8.80 to 12.
+)
+
+INSERT INTO Stu_master(Rno, Name, Branch, spi,bklog) VALUES
+(101, 'Raju','CE',8.80,0),
+(102, 'Amit','CE',2.20,3),
+(103, 'Sanjay','ME',1.50,6),
+(104, 'Neha','EC',7.65,0),
+(105, 'Meera','EE',5.52,2),
+(106, 'Mahesh',default, 8.80,3)
+
+
+----Try to update SPI of Raju from 8.80 to 12.
 UPDATE STU_MASTER  SET SPI = 12 WHERE name = 'raju'
 
---Try to update Bklog of Neha from 0 to -1.
+----Try to update Bklog of Neha from 0 to -1.
 update stu_master set bklog = -1 where name = 'neha'
 
 --Enter the default value as ‘General’ in branch to all new records IF no other value is specified.
