@@ -63,13 +63,25 @@ where Rno in
 where SPI in 
 (select max (spi) from Academic)
 );
---6. Display details of students having more than 1 backlog.select * from Stu_Detailwhere Rno in(select Rno from Academicwhere Bklog>1)--Part – B: of sub queries 
+--6. Display details of students having more than 1 backlog.
+select * from Stu_Detail
+where Rno in
+(select Rno from Academic
+where Bklog>1
+)
+
+--Part – B: of sub queries 
 --1. Display name of students who are either from computer department or from mechanical department.
 	select * from Stu_Detail
 	where DID in
 	(select did from Department
 	where DName in('computer','Mechanical') )
---2. Display name of students who are in same department as 102 studying in.	-- part A of set OpreatorCREATE TABLE Computer (
+--2. Display name of students who are in same department as 102 studying in.
+	
+
+-- part A of set Opreator
+
+CREATE TABLE Computer (
     RollNo INT,
     Name VARCHAR(50)
 );
@@ -89,7 +101,9 @@ INSERT INTO Electrical (RollNo, Name) VALUES
 (105, 'Ajay'),
 (107, 'Mahesh'),
 (115, 'Manish');
-	--1. Display name of students who is either in Computer or in Electrical.
+
+
+	--1. Display name of students who is either in Computer or in Electrical.
 	select name from Computer
 	union
 	select name from Electrical

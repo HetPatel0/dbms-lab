@@ -47,7 +47,13 @@ select c.name from City c full outer join Village v on c.CityID = v.CityID  grou
 select c.name , count(v.name) from city c left outer join Village v on c.CityID = v.CityID group by c.Name
 
 --Count the number of cities having more than one village.
-select count(c.name) from City c join Village v on c.CityID = v.CityID group by c.Name  having count(v.VID) > 1
+select count(*) from  (
+select c.name	
+from City c join
+Village v on c.CityID = v.CityID
+group by c.Name 
+having count(v.VID) > 1
+) as SubQuery
 
 
 create table Stu_master (
